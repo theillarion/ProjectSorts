@@ -11,24 +11,23 @@
 namespace my_sort
 {
 	template <typename Iterator>
-	void	QuickSort(Iterator	first, Iterator	end);
+	void	QuickSort(Iterator	begin, Iterator	end);
 	
 }
 
 template<typename Iterator>
-static inline auto	FindPivot(Iterator first, Iterator end)
+static inline auto	FindPivot(Iterator begin, Iterator end)
 {
-	if (*first > *end)
-		return	*first;
+	if (*begin > *end)
+		return	*begin;
 	else
 		return	*end;
 }
 
 template<typename Iterator>
-static inline Iterator	Partition(auto PivotElement,
-									Iterator first, Iterator end)
+static inline Iterator	Partition(auto PivotElement, Iterator begin, Iterator end)
 {
-	Iterator	local_first = first;
+	Iterator	local_first = begin;
 	Iterator	local_end = end;
 
 	if (local_first >= local_end)
@@ -37,7 +36,7 @@ static inline Iterator	Partition(auto PivotElement,
 	{
 		while (*local_first < PivotElement && local_first < end)
 			++local_first;
-		while (*local_end >= PivotElement && local_end > first)
+		while (*local_end >= PivotElement && local_end > begin)
 			--local_end;
 		if (local_first < local_end)
 			std::swap(*local_first, *local_end);
@@ -46,16 +45,28 @@ static inline Iterator	Partition(auto PivotElement,
 }
 
 template<typename Iterator>
-inline void my_sort::QuickSort(Iterator first, Iterator end)
+void	OutputRange(Iterator begin, Iterator end)
 {
-	if (end > first)
+	static unsigned int count = 1;
+	std::cout << count++ << " : { ";
+	for (auto it = begin; it <= end; ++it)
+		std::cout << *it << " ";
+	std::cout << "}" << std::endl;
+}
+
+template<typename Iterator>
+inline void my_sort::QuickSort(Iterator begin, Iterator end)
+{
+	if (begin < end)
 	{
-		auto		v = FindPivot(first, end);
-		Iterator	m = Partition(v, first, end);
-		if (first == m)
-			return;
-		QuickSort(first, m - 1);
-		QuickSort(m, end);
+		auto		v = FindPivot(begin, end - 1);
+		Iterator	m = Partition(v, begin, end - 1);
+		//OutputRange(begin, end);
+		QuickSort(begin, m);
+		if (begin == m)
+			QuickSort(m + 1, end);
+		else
+			QuickSort(m, end);
 	}
 }
 
