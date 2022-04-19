@@ -39,12 +39,12 @@ inline std::ostream& operator<<(std::ostream& out, std::list<T>& src)
 	return (out);
 }
 
-template <typename T>
-inline bool IsSorted(std::vector<T>& src)
+template <typename Iterator>
+inline bool IsSorted(Iterator begin, Iterator end)
 {
-	for (int i = 0; i + 1 < src.size(); ++i)
+	for (auto it = begin; it + 1 < end; ++it)
 	{
-		if (src[i] > src[i + 1])
+		if (*it > *(it + 1))
 			return (false);
 	}
 	return (true);
