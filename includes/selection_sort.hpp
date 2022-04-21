@@ -13,22 +13,6 @@ namespace my_sort
 	void	SelectionSort(ForwardIterator begin, ForwardIterator end);
 }
 
-//template<typename T>
-//inline void	my_sort::SelectionSort(std::vector<T>& src)
-//{
-//	size_t	min_index;
-//
-//	for (auto i = 0; i < src.size() - 1; ++i)
-//	{
-//		min_index = i;
-//		for (auto j = i + 1; j < src.size(); ++j)
-//			if (src[j] < src[min_index])
-//				min_index = j;
-//		if (i != min_index)
-//			std::swap(src[i], src[min_index]);
-//	}
-//}
-
 template<typename ForwardIterator>
 inline void	my_sort::SelectionSort(ForwardIterator begin, ForwardIterator end)
 {

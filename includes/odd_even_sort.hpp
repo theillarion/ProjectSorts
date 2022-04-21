@@ -9,43 +9,9 @@
 
 namespace my_sort
 {
-	/*template <typename T>
-	void	OddEvenSort(std::vector<T>& src);*/
 	template <typename ForwardIterator>
 	void	OddEvenSort(ForwardIterator begin, ForwardIterator end);
 }
-
-/*
-template <typename T>
-inline void	my_sort::OddEvenSort(std::vector<T>& src)
-{
-	bool	is_find;
-
-	is_find = true;
-	while (is_find)
-	{
-		is_find = false;
-		for (auto j = 0; j + 1 < src.size(); j += 2)
-		{
-			if (src[j] > src[j + 1])
-			{
-				std::swap(src[j], src[j + 1]);
-				is_find = true;
-				std::cout << src;
-			}
-		}
-		for (auto j = 1; j + 1 < src.size(); j += 2)
-		{
-			if (src[j] > src[j + 1])
-			{
-				std::swap(src[j], src[j + 1]);
-				is_find = true;
-				std::cout << src;
-			}
-		}
-	}
-}
-*/
 
 template <typename ForwardIterator>
 inline void	my_sort::OddEvenSort(ForwardIterator begin, ForwardIterator end)
