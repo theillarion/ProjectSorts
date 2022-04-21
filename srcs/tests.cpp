@@ -2,37 +2,34 @@
 // Created by Illarion on 19.04.2022.
 //
 
-# include "common.hpp"
-# include "quick_sort.hpp"
-# include "date.hpp"
-# include "generate_random.hpp"
-
-# define LIGHT_RED "\033[91m"
-# define LIGHT_GREEN "\033[92m"
-# define NOCOLOR "\033[0m"
-
-void PrintSimpleArray(int	*ptr, unsigned int size)
-{
-	std::cout << "{ ";
-	for (auto i = 0; i < size; ++i)
-		std::cout << ptr[i] << " ";
-	std::cout << "}" << std::endl;
-}
+# include "tests.hpp"
 
 void Test1()
 {
-	std::vector<int>	src = {3, 1, 4, 1, 5, 9, 2, 3};
-	std::cout << src;
-	my_sort::QuickSort(src.begin(), src.end() - 1);
-	std::cout << src;
+	std::vector<int>	src = GenerateRandomVector(INT32_MIN, INT32_MAX, 10000);
+	Timer::Start();
+	my_sort::QuickSort(src.begin(), src.end());
+	Timer::Stop();
+	std::cout << "Vector is sorted: " <<
+		(std::is_sorted(src.begin(), src.end()) ? "true\n" : "false\n") <<
+		"Millisecods: " << Timer::GetTime() <<
+		std::endl << "Seconds: " << Timer::GetTimeSeconds() << std::endl;
 }
 
 void Test1_1()
 {
-	std::vector<int>	src = {-6, -3, 2, 10, 1, 3, -6, -4, 1, 3 };
-	std::cout << src;
-	my_sort::QuickSort(src.begin(), src.end());
-	std::cout << src;
+	for (int i = 0; i < 100; ++i)
+	{
+		std::vector<int>	src = GenerateRandomVector(INT32_MIN, INT32_MAX, 10);
+		Timer::Start();
+		my_sort::BubbleSort(src.begin(), src.end());
+		Timer::Stop();
+		std::cout << src;
+		std::cout << "Vector is sorted: " <<
+			(std::is_sorted(src.begin(), src.end()) ? "true\n" : "false\n") <<
+			"Millisecods: " << Timer::GetTime() <<
+			std::endl << "Seconds: " << Timer::GetTimeSeconds() << std::endl << std::endl;
+	}
 }
 
 
@@ -57,7 +54,7 @@ void Test3()
 	PrintSimpleArray(arr, n);
 	my_sort::QuickSort(arr, arr + (n - 1));
 	PrintSimpleArray(arr, n);
-	std::cout << (IsSorted(arr, arr + n) ? "true" : "false") << std::endl;
+	std::cout << (std::is_sorted(arr, arr + n) ? "true" : "false") << std::endl;
 }
 
 void Test4()
@@ -65,7 +62,7 @@ void Test4()
 	std::vector<int>	src{1};
 	std::cout << src;
 	my_sort::QuickSort(src.begin(), src.end());
-	std::cout << src << (IsSorted(src.begin(), src.end()) ? "true" : "false") << std::endl;
+	std::cout << src << (std::is_sorted(src.begin(), src.end()) ? "true" : "false") << std::endl;
 }
 
 void Test5()
@@ -76,7 +73,7 @@ void Test5()
 		std::vector<int>	vec = GenerateRandomVector(INT32_MIN, INT32_MAX, size);
 		std::cout << vec;
 		my_sort::QuickSort(vec.begin(), vec.end());
-		bool is_sorted = IsSorted(vec.begin(), vec.end());
+		bool is_sorted = std::is_sorted(vec.begin(), vec.end());
 		std::cout << vec;
 		if (is_sorted)
 			std::cout << "TRUE" << std::endl;
