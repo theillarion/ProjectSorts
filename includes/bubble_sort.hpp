@@ -9,10 +9,13 @@
 
 namespace my_sort
 {
-	template <typename T>
-	void	BubbleSort(std::vector<T>& src);
-}
+	//template <typename T>
+	//void	BubbleSort(std::vector<T>& src);
 
+	template <typename ForwardIterator>
+	void	BubbleSort(ForwardIterator begin, ForwardIterator end);
+}
+/*
 template <typename T>
 inline void	my_sort::BubbleSort(std::vector<T>& src)
 {
@@ -28,6 +31,28 @@ inline void	my_sort::BubbleSort(std::vector<T>& src)
 				std::swap(src[j], src[j + 1]);
 				is_find = true;
 				std::cout << src;
+			}
+		}
+		if (is_find == false)
+			break;
+	}
+}
+*/
+
+template <typename ForwardIterator>
+inline void	my_sort::BubbleSort(ForwardIterator begin, ForwardIterator end)
+{
+	bool	is_find;
+
+	for (auto it_i = end; it_i != begin; --it_i)
+	{
+		is_find = false;
+		for (auto it_j = begin; it_j + 1 < it_i; ++it_j)
+		{
+			if (*it_j > *(it_j + 1))
+			{
+				std::swap(*it_j, *(it_j + 1));
+				is_find = true;
 			}
 		}
 		if (is_find == false)

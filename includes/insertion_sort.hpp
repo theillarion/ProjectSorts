@@ -9,38 +9,60 @@
 
 namespace my_sort
 {
-	template<typename T>
-	void	InsertionSort(std::vector<T>& src);
+	template<typename ForwardIterator>
+	void	InsertionSort(ForwardIterator begin, ForwardIterator end);
 
 }
 
-template<typename T>
-inline void	my_sort::InsertionSort(std::vector<T>& src)
-{
-	std::vector<T>	result;
-	bool			is_insert;
+//template<typename T>
+//inline void	my_sort::InsertionSort(std::vector<T>& src)
+//{
+//	std::vector<T>	result;
+//	bool			is_insert;
+//
+//	for (const auto& elem : src)
+//	{
+//		if (result.empty())
+//			result.push_back(elem);
+//		else
+//		{
+//			is_insert = false;
+//			for (int i = result.size() - 1; i >= 0; --i)
+//			{
+//				if (result[i] <= elem)
+//				{
+//					result.insert(result.begin() + i + 1, elem);
+//					is_insert = true;
+//					break ;
+//				}
+//			}
+//			if (is_insert == false)
+//				result.insert(result.begin(), elem);
+//		}
+//	}
+//	src = result;
+//}
 
-	for (const auto& elem : src)
+template<typename ForwardIterator>
+inline void	my_sort::InsertionSort(ForwardIterator begin, ForwardIterator end)
+{
+	if (begin >= end)
+		return;
+	for (auto it_i = begin + 1; it_i < end; ++it_i)
 	{
-		if (result.empty())
-			result.push_back(elem);
-		else
+		if (*(it_i - 1) <= *it_i)
+			continue;
+		for (auto it_j = begin; it_j < it_i; ++it_j)
 		{
-			is_insert = false;
-			for (int i = result.size() - 1; i >= 0; --i)
+			if (*it_i < *it_j)
 			{
-				if (result[i] <= elem)
-				{
-					result.insert(result.begin() + i + 1, elem);
-					is_insert = true;
-					break ;
-				}
+				auto backup = *it_i;
+				std::move(it_j, it_i, it_j + 1);
+				*it_j = backup;
+				break;
 			}
-			if (is_insert == false)
-				result.insert(result.begin(), elem);
 		}
 	}
-	src = result;
 }
 
 #endif //PROJECTSORTS_INSERTION_SORT_HPP

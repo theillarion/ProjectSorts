@@ -9,11 +9,11 @@
 
 namespace my_sort
 {
-	template<typename T>
-	void	CombSort(std::vector<T>& src)
-
+	template<typename ForwardIterator>
+	void	CombSort(ForwardIterator begin, ForwardIterator end);
 }
 
+/*
 template<typename T>
 inline void	my_sort::CombSort(std::vector<T>& src)
 {
@@ -29,6 +29,22 @@ inline void	my_sort::CombSort(std::vector<T>& src)
 	}
 
 	BubbleSort(src);
+}*/
+
+template<typename ForwardIterator>
+inline void my_sort::CombSort(ForwardIterator begin, ForwardIterator end)
+{
+	const double reduction_factor = 1.247330950103979;
+	int step = (end - begin) / reduction_factor;
+
+	while (step > 1)
+	{
+		for (auto it = begin; it < end - step; it += step)
+			if (*it > *(it + step))
+				std::swap(*it, *(it + step));
+		step /= reduction_factor;
+	}
+	BubbleSort(begin, end);
 }
 
 #endif //PROJECTSORTS_COMB_SORT_HPP
