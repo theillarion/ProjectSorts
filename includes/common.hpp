@@ -16,10 +16,6 @@ template <typename T>
 std::ostream&	operator<<(std::ostream& out, std::list<T>& src);
 
 template <typename T>
-bool	IsSorted(std::vector<T>& src);
-
-
-template <typename T>
 inline std::ostream& operator<<(std::ostream& out, std::vector<T>&	src)
 {
 	out << "{ ";
@@ -39,15 +35,12 @@ inline std::ostream& operator<<(std::ostream& out, std::list<T>& src)
 	return (out);
 }
 
-template <typename Iterator>
-inline bool IsSorted(Iterator begin, Iterator end)
+inline void PrintSimpleArray(int* ptr, unsigned int size)
 {
-	for (auto it = begin; it + 1 < end; ++it)
-	{
-		if (*it > *(it + 1))
-			return (false);
-	}
-	return (true);
+	std::cout << "{ ";
+	for (auto i = 0; i < size; ++i)
+		std::cout << ptr[i] << " ";
+	std::cout << "}" << std::endl;
 }
 
 #endif //PROJECTSORTS_COMMON_HPP
