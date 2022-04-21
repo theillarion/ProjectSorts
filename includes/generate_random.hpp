@@ -8,7 +8,7 @@
 # include <vector>
 # include <random>
 
-int	GenerateRandomInt32(int min, int max)
+inline int	GenerateRandomInt32(int min, int max)
 {
 	std::random_device				rnd;
 	std::mt19937					gen(rnd());
@@ -16,7 +16,7 @@ int	GenerateRandomInt32(int min, int max)
 	return (uniform(gen));
 }
 
-std::vector<int>	GenerateRandomVector(int min, int max, size_t	size)
+inline std::vector<int>	GenerateRandomVector(int min, int max, size_t	size)
 {
 	std::vector<int>				result;
 	std::random_device				rnd;
