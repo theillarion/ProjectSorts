@@ -37,7 +37,7 @@ void my_sort::QuickSort(ForwardIterator begin, ForwardIterator end)
 	{
 		auto		v = FindPivot(begin, end - 1);
 		ForwardIterator	m = Partition(v, begin, end - 1);
-		QuickSort(begin, m - 1);
+		QuickSort(begin, m);
 		if (begin == m)
 			QuickSort(m + 1, end);
 		else
