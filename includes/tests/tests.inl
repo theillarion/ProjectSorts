@@ -7,6 +7,7 @@ inline void	TestTime(std::string name_sort, FunctionSort function_sort, std::vec
 	size_t				count = 0;
 	std::vector<Type>	backup;
 
+	std::cout << "Testing sort <" << LIGHT_YELLOW << name_sort << NOCOLOR << ">" << std::endl;
 	backup.resize(src.size());
 
 	for (int i = 0; times == 0 && i < 100; ++i)
@@ -23,7 +24,6 @@ inline void	TestTime(std::string name_sort, FunctionSort function_sort, std::vec
 		times += Timer::GetTime();
 		++count;
 	}
-	std::cout << "Testing sort <" << LIGHT_YELLOW << name_sort << NOCOLOR << ">" << std::endl;
 	Result(std::is_sorted(backup.begin(), backup.end()));
 	std::cout <<	"Count:	" << src.size() << std::endl <<
 			  "Times:	" << (static_cast<double>(times) / (count)) / 1000.0 << " seconds" << std::endl << std::endl;
