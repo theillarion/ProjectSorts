@@ -5,3 +5,5 @@ out/
 .cmake/
 .idea/
 Makefile
+CMake*
+!CMakeLists.txt
