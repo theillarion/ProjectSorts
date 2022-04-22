@@ -1,25 +1,12 @@
-//
-// Created by Illarion on 15.04.2022.
-//
-
-#ifndef PROJECTSORTS_SHAKER_SORT_HPP
-# define PROJECTSORTS_SHAKER_SORT_HPP
-
-# include <vector>
-
-namespace my_sort
-{
-	template <typename ForwardIterator>
-	void	ShakerSort(ForwardIterator begin, ForwardIterator end);
-}
+#include "shaker_sort.hpp"
 
 template <typename ForwardIterator>
-inline void	my_sort::ShakerSort(ForwardIterator begin, ForwardIterator end)
+void	my_sort::ShakerSort(ForwardIterator begin, ForwardIterator end)
 {
 	ForwardIterator	local_begin	= begin;
 	ForwardIterator	local_end	= end;
 	bool			is_find		= true;
-	
+
 	while (is_find && local_begin < local_end)
 	{
 		is_find = false;
@@ -45,5 +32,3 @@ inline void	my_sort::ShakerSort(ForwardIterator begin, ForwardIterator end)
 		++local_begin;
 	}
 }
-
-#endif //PROJECTSORTS_SHAKER_SORT_HPP

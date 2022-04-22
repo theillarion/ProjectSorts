@@ -1,20 +1,7 @@
-//
-// Created by Illarion on 15.04.2022.
-//
-
-#ifndef PROJECTSORTS_ODD_EVEN_SORT_HPP
-# define PROJECTSORTS_ODD_EVEN_SORT_HPP
-
-# include <vector>
-
-namespace my_sort
-{
-	template <typename ForwardIterator>
-	void	OddEvenSort(ForwardIterator begin, ForwardIterator end);
-}
+#include "odd_even_sort.hpp"
 
 template <typename ForwardIterator>
-inline void	my_sort::OddEvenSort(ForwardIterator begin, ForwardIterator end)
+void	my_sort::OddEvenSort(ForwardIterator begin, ForwardIterator end)
 {
 	bool	is_find = true;
 
@@ -41,5 +28,3 @@ inline void	my_sort::OddEvenSort(ForwardIterator begin, ForwardIterator end)
 		}
 	}
 }
-
-#endif //PROJECTSORTS_ODD_EVEN_SORT_HPP

@@ -5,7 +5,6 @@
 #ifndef PROJECTSORTS_TIMER_HPP
 #define PROJECTSORTS_TIMER_HPP
 
-
 class Timer
 {
 private:
@@ -20,6 +19,5 @@ public:
 	static unsigned long long GetTime();
 	static long double GetTimeSeconds();
 };
-
 
 #endif //PROJECTSORTS_TIMER_HPP

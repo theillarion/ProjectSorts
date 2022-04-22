@@ -2,7 +2,14 @@
 // Created by Illarion on 19.04.2022.
 //
 
-# include "tests.hpp"
+# include "tests/tests.hpp"
+
+void	Result(bool is_success)
+{
+	static size_t i = 1;
+	static std::string test = "Test #";
+	std::cout << (test + std::to_string(i++) + ": " + (is_success ? OK : KO)) << std::endl;
+}
 
 void Test1()
 {
@@ -84,4 +91,84 @@ void Test5()
 		}
 	}
 	std::cout << std::endl;
+}
+
+void	TestForArray()
+{
+	std::vector<int>	vec;
+
+	std::cout << "Testing sort <" << LIGHT_YELLOW << "Heap sort" << NOCOLOR << ">" << std::endl << std::endl;
+
+	//	TEST 1
+	my_sort::HeapSort(vec);
+	Result(vec.empty());
+
+	vec.clear();
+
+	//	TEST 2
+	vec = { 1 };
+	my_sort::HeapSort(vec);
+	Result(std::is_sorted(vec.begin(), vec.end()));
+
+	vec.clear();
+
+	//	TEST 3
+	vec = { 1, 2, 3 };
+	my_sort::HeapSort(vec);
+	Result(std::is_sorted(vec.begin(), vec.end()));
+
+	vec.clear();
+
+	//	TEST 4
+	vec = { 3, 2, 1, 4 };
+	my_sort::HeapSort(vec);
+	Result(std::is_sorted(vec.begin(), vec.end()));
+
+	vec.clear();
+
+	//	TEST 5
+	vec = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	my_sort::HeapSort(vec);
+	Result(std::is_sorted(vec.begin(), vec.end()));
+
+	vec.clear();
+
+	//	TEST 6
+	vec = { 1, 2, 3, 4, 5, 6, 7, 8, 9, -10 };
+	my_sort::HeapSort(vec);
+	Result(std::is_sorted(vec.begin(), vec.end()));
+	std::cout << vec;
+
+	vec.clear();
+
+	//	TEST 7
+	vec = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+	my_sort::HeapSort(vec);
+	Result(std::is_sorted(vec.begin(), vec.end()));
+
+	vec.clear();
+
+	//	TEST 8
+	vec = { 10, -2, -3, 4, -5, 6, -7, 8, -9, -10 };
+	my_sort::HeapSort(vec);
+	Result(std::is_sorted(vec.begin(), vec.end()));
+
+	vec.clear();
+
+	//	TEST 9
+	vec = { 1, 5, 3, 10, 5, -100, 7, 6, 1, 10 };
+	my_sort::HeapSort(vec);
+	Result(std::is_sorted(vec.begin(), vec.end()));
+
+	vec.clear();
+
+	//	TEST 10
+	vec = { 1, 1, 1, -1, -1, -1, 1, 1, -1, -1, 1, 1 };
+	my_sort::HeapSort(vec);
+	Result(std::is_sorted(vec.begin(), vec.end()));
+
+	vec.clear();
+
+	std::cout << std::endl << "Random tests" << std::endl;
+
 }

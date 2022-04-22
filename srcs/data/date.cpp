@@ -1,7 +1,7 @@
 //
 // Created by Illarion on 19.04.2022.
 //
-#include "date.hpp"
+#include "data/date.hpp"
 
 Date::Date(unsigned short day, unsigned short month, unsigned short year):
 	day(day), month(month), year(year)

@@ -4,7 +4,7 @@
 
 #include <ctime>
 
-#include "timer.hpp"
+#include "timer/timer.hpp"
 
 unsigned long long Timer::start_milliseconds = 0;
 unsigned long long Timer::end_milliseconds = 0;
