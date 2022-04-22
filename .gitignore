@@ -1,8 +1,7 @@
 # Project exclude paths
-*
-!*.hpp
-!*.cpp
-!includes/
-!srcs/
-!CMake*
 cmake-build-debug-visual-studio
+out/
+.vs/
+.cmake/
+.idea/
+Makefile
