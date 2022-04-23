@@ -1,10 +1,48 @@
 #include "merge_sort.hpp"
 
 template<typename ForwardIterator>
+static void	SortTwo(ForwardIterator begin, ForwardIterator middle, ForwardIterator end)
+{
+	using value_type = std::iterator_traits<ForwardIterator>::value_type;
+	std::vector<value_type>	buffer;
+	ForwardIterator			beginFirst;
+	ForwardIterator			beginSecond;
+
+	if (end - begin == 1)
+		return;
+	if (begin == middle)
+		move(middle, end, begin);
+	else if (middle == end)
+		return;
+	buffer.reserve(end - begin);
+	beginFirst = begin;
+	beginSecond = middle;
+	if (beginFirst == middle)
+		move(middle, end, begin);
+	else if (beginSecond == end)
+		return;
+	else
+	{
+		while (beginFirst < middle || beginSecond < end)
+		{
+			if (beginFirst == middle && beginSecond != end)
+				buffer.push_back(*(beginSecond++));
+			else if (beginSecond == end && beginFirst != middle)
+				buffer.push_back(*(beginFirst++));
+			else if (*beginFirst <= *beginSecond)
+				buffer.push_back(*(beginFirst++));
+			else
+				buffer.push_back(*(beginSecond++));
+		}
+	}
+	std::move(buffer.begin(), buffer.end(), begin);
+}
+
+template<typename ForwardIterator>
 static void	Merge(ForwardIterator orig_begin, ForwardIterator orig_end,
 	ForwardIterator begin, ForwardIterator middle, ForwardIterator end)
 {
-	std::sort(begin, end + 1);
+	SortTwo(begin, middle + 1, end + 1);
 	if (std::distance(orig_begin, orig_end) == std::distance(begin, end))
 		std::move(begin, end + 1, orig_begin);
 }
