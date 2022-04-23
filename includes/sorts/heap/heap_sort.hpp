@@ -7,8 +7,8 @@
 
 namespace my_sort
 {
-	template <typename Type>
-	void	HeapSort(std::vector<Type>&	src);
+	template <typename ForwardIterator>
+	void	HeapSort(ForwardIterator begin, ForwardIterator end);
 }
 
 # include "heap_sort.inl"

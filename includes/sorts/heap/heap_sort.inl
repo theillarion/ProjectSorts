@@ -1,71 +1,39 @@
 #include "heap_sort.hpp"
 
-template <typename Type>
-static void	Push(std::vector<Type>&	src, int root, int size)
+template <typename ForwardIterator>
+static void	Push(ForwardIterator begin, ForwardIterator end, int root_value, unsigned int root_index)
 {
-	if (root * 2 + 1 < size)
+	if (root_index * 2 + 1 < end - begin)
 	{
-		int largest	= root * 2 + 1;
-		int r_ 		= root * 2 + 2;
-		if (r_ < size && src[r_] > src[largest])
-			largest = r_;
-		if (src[largest] > src[root])
+		ForwardIterator	largest = begin + (root_index * 2 + 1);
+		ForwardIterator	right_child = begin + (root_index * 2 + 2);
+		if (right_child < end && *right_child > *largest)
+			largest = right_child;
+		if (*largest > root_value)
 		{
-			std::swap(src[largest], src[root]);
-			Push(src, largest, size);
+			std::swap(*largest, *(begin + root_index));
+			Push(begin, end, *largest, std::distance(begin, largest));
 		}
 	}
 }
 
-template <typename Type>
-static void	BuildHeap(std::vector<Type>&	src)
+template <typename ForwardIterator>
+static void	BuildHeap(ForwardIterator begin, ForwardIterator end)
 {
-	for (int i = src.size() / 2 - 1; i >= 0; --i)
-		Push(src, i, src.size());
+	for (auto i = (end - begin) / 2 - 1; i >= 0; --i)
+		Push(begin, end, *(begin + i), i);
 }
 
-template <typename Type>
-void	my_sort::HeapSort(std::vector<Type>&	src)
+template <typename ForwardIterator>
+void	my_sort::HeapSort(ForwardIterator begin, ForwardIterator end)
 {
-	BuildHeap(src);
-	for (int i = src.size() - 1; i >= 0; --i)
+	if (begin < end)
 	{
-		std::swap(src[0], src[i]);
-		Push(src, 0, i);
+		BuildHeap(begin, end);
+		for (auto it = end; it > begin; --it)
+		{
+			std::swap(*begin, *(it - 1));
+			Push(begin, it - 1, *begin, 0);
+		}
 	}
 }
-
-//template <typename ForwardIterator>
-//static inline void	Push(ForwardIterator begin, ForwardIterator end, ForwardIterator root)
-//{
-//	if (root * 2 + 1 < size)
-//	{
-//		int largest = root * 2 + 1;
-//		int r_ = root * 2 + 2;
-//		if (r_ < size && src[r_] > src[largest])
-//			largest = r_;
-//		if (src[largest] > src[root])
-//		{
-//			std::swap(src[largest], src[root]);
-//			Push(src, largest, size);
-//		}
-//	}
-//}
-//
-//template <typename ForwardIterator>
-//static inline void	BuildHeap(ForwardIterator begin, ForwardIterator end)
-//{
-//	for (auto i = end / 2 - 1; i >= begin; --i)
-//		Push(src, i, src.size());
-//}
-//
-//template <typename ForwardIterator>
-//inline void	my_sort::HeapSort(ForwardIterator begin, ForwardIterator end)
-//{
-//	BuildHeap(begin, end);
-//	for (auto it = end - 1; it >= begin; --it)
-//	{
-//		std::swap(*begin, *it);
-//		Push(begin, it, begin);
-//	}
-//}
