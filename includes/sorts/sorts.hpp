@@ -14,5 +14,6 @@
 # include "selection/selection_sort.hpp"
 # include "shaker/shaker_sort.hpp"
 # include "merge/merge_sort.hpp"
+# include "shell/shell_sort.hpp"
 
 #endif //PROJECTSORTS_SORTS_HPP
