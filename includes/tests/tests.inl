@@ -1,32 +1,53 @@
 #include "tests.hpp"
 
-template<typename Type, typename FunctionSort>
-inline void	TestTime(std::string name_sort, FunctionSort function_sort, std::vector<Type>&	src)
+template<typename ForwardIterator, typename FunctionSort, typename Type>
+static long double TestTimeTen(FunctionSort function_sort, ForwardIterator begin, ForwardIterator end, const std::vector<Type>&	buffer)
 {
-	unsigned long long	times = 0;
-	size_t				count = 0;
-	std::vector<Type>	backup;
+	unsigned int count_iter = 1000;
+	std::vector<std::vector<Type>>	test_vecs;
 
+	if (end - begin >= 1000)
+		count_iter = 100;
+	if (end - begin >= 1000)
+		count_iter = 10;
+	test_vecs.resize(count_iter);
+	for (auto& vec : test_vecs)
+		copy(begin, end, std::back_inserter(vec));
+	Timer::Start();
+	for (auto& vec : test_vecs)
+		function_sort(vec.begin(), vec.end());
+	Timer::Stop();
+	return (static_cast<long double>(Timer::GetTime()) / count_iter);
+}
+
+template<typename ForwardIterator, typename FunctionSort, typename Type>
+inline void	TestTime(std::string name_sort, FunctionSort function_sort, ForwardIterator begin, ForwardIterator end, std::vector<Type>	buffer)
+{
+	long double times = 0.0;
 	std::cout << "Testing sort <" << LIGHT_YELLOW << name_sort << NOCOLOR << ">" << std::endl;
-	backup.resize(src.size());
-
-	for (int i = 0; times == 0 && i < 100; ++i)
+	
+	if (begin >= end)
 	{
-		std::copy(src.begin(), src.end(), backup.begin());
-		Timer::Start();
-		function_sort(backup.begin(), backup.end());
-		Timer::Stop();
-		if (!std::is_sorted(backup.begin(), backup.end()))
-		{
-			std::cout << LIGHT_RED << "ERROR!" << NOCOLOR << std::endl;
-			break;
-		}
-		times += Timer::GetTime();
-		++count;
+		std::cerr << LIGHT_RED << "ERROR: " << NOCOLOR << "begin >= end" << std::endl;
+		return;
 	}
-	Result(std::is_sorted(backup.begin(), backup.end()));
-	std::cout <<	"Count:	" << src.size() << std::endl <<
-			  "Times:	" << (static_cast<double>(times) / (count)) / 1000.0 << " seconds" << std::endl << std::endl;
+
+	buffer.clear();
+	std::copy(begin, end, std::back_inserter(buffer));
+
+	Timer::Start();
+	function_sort(buffer.begin(), buffer.end());
+	Timer::Stop();
+	if (Timer::GetTime() == 0)
+		times = TestTimeTen(function_sort, begin, end, buffer);
+	else
+		times = static_cast<long double>(Timer::GetTime());
+	Result(std::is_sorted(buffer.begin(), buffer.end()));
+	if (end - begin < 10000)
+		std::cout.precision(10);
+	std::cout.setf(std::ios::fixed);
+	std::cout << "Count:	" << end - begin << std::endl <<
+		"Times:	" << times / 1000.0 << " seconds" << std::endl << std::endl;
 }
 
 template<typename FunctionSort>
@@ -95,7 +116,6 @@ inline void TestIsSorted(std::string name_sort, FunctionSort function_sort)
 	vec = { 1, 2, 3, 4, 5, 6, 7, 8, 9, -10 };
 	function_sort(vec.begin(), vec.end());
 	Result(std::is_sorted(vec.begin(), vec.end()));
-	std::cout << vec;
 
 	vec.clear();
 

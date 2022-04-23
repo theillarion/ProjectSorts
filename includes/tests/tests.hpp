@@ -26,11 +26,10 @@ void	Test1_1();
 void	Test2();
 void	Test3();
 void	Test5();
-void	TestForArray();
 void	Result(bool is_success);
 
-template<typename ForwardIterator, typename FunctionSort>
-void	TestTime(std::string name_sort, FunctionSort function_sort, ForwardIterator begin, ForwardIterator end);
+template<typename ForwardIterator, typename FunctionSort, typename Type>
+void	TestTime(std::string name_sort, FunctionSort function_sort, ForwardIterator begin, ForwardIterator end, std::vector<Type>	buffer);
 
 template<typename FunctionSort>
 void	TestIsSorted(std::string name_sort, FunctionSort function_sort, size_t size, size_t count);
