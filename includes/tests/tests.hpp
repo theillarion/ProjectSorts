@@ -12,24 +12,17 @@
 # include "sorts/sorts.hpp"
 # include "common/common.hpp"
 # include "random/generate_random.hpp"
-# include "data/date.hpp"
 # include "timer/timer.hpp"
 
+# define LIGHT_GREEN	"\033[92m"
 # define LIGHT_YELLOW	"\033[93m"
 # define LIGHT_RED		"\033[91m"
 # define NOCOLOR		"\033[0m"
-# define OK				"\033[92mOK\033[0m"
-# define KO				"\033[91mKO\033[0m"
-
-void	Test1();
-void	Test1_1();
-void	Test2();
-void	Test3();
-void	Test5();
-void	Result(bool is_success);
 
 template<typename ForwardIterator, typename FunctionSort, typename Type>
-void	TestTime(std::string name_sort, FunctionSort function_sort, ForwardIterator begin, ForwardIterator end, std::vector<Type>	buffer);
+void	TestTime(std::string name_sort, FunctionSort function_sort,
+					ForwardIterator begin, ForwardIterator end,
+					std::ostream_iterator<Type>	output, bool is_enabled_color);
 
 template<typename FunctionSort>
 void	TestIsSorted(std::string name_sort, FunctionSort function_sort, size_t size, size_t count);
