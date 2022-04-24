@@ -11,7 +11,7 @@ include_directories(includes)
 set(SRCS    srcs/main.cpp
             srcs/data/date.cpp
             srcs/timer/timer.cpp
-            srcs/tests/tests.cpp
+            
             srcs/common/common.cpp)
 
 add_executable(ProjectSorts ${SRCS})
