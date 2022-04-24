@@ -9,6 +9,8 @@ namespace my_sort
 {
 	template <typename ForwardIterator>
 	void	QuickSort(ForwardIterator	begin, ForwardIterator	end);
+	template <typename ForwardIterator, typename FindPivot>
+	void	QuickSort(ForwardIterator	begin, ForwardIterator	end, FindPivot find_pivot);
 }
 
 # include "quick_sort.inl"
