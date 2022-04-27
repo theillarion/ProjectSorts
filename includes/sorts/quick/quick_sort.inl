@@ -49,7 +49,7 @@ void my_sort::QuickSort(ForwardIterator begin, ForwardIterator end)
 {
 	if (begin < end)
 	{
-		auto		v = FindPivotDefault(begin, end);
+		auto		v = FindPivotMedian(begin, end);
 		ForwardIterator	m = Partition(v, begin, end);
 		QuickSort(begin, m);
 		if (begin == m)
