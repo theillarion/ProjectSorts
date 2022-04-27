@@ -3,34 +3,33 @@
 //
 
 #include "sorts/sorts.hpp"
-
 #include "tests/tests.hpp"
+#include "report/report.hpp"
 
 int main()
 {
-	std::ofstream	file("result__win11__1000__unsorted__-1000_1000__no_uniq", std::ios_base::trunc);
-	std::vector<std::vector<int>>	numbers;
-	std::ostream_iterator<char>	output(file);
-	
-	try
-	{
-		numbers = ReaderNumbersFromFile<int>("C:\\Users\\pro10\\OneDrive\\Рабочий стол\\tests\\1_000\\unsorted__-1000_1000__no_uniq");
+	using vector_iter = std::vector<int>::iterator;
 
-		TestTime("Bubble sort", my_sort::BubbleSort<std::vector<int>::iterator>, numbers.begin(), numbers.end(), output, false);
-		TestTime("Shaker sort", my_sort::ShakerSort<std::vector<int>::iterator>, numbers.begin(), numbers.end(), output, false);
-		TestTime("Odd-Even sort", my_sort::OddEvenSort<std::vector<int>::iterator>, numbers.begin(), numbers.end(), output, false);
-		TestTime("Comb sort", my_sort::CombSort<std::vector<int>::iterator>, numbers.begin(), numbers.end(), output, false);
-		TestTime("Selection sort", my_sort::SelectionSort<std::vector<int>::iterator>, numbers.begin(), numbers.end(), output, false);
-		TestTime("Insertion sort", my_sort::InsertionSort<std::vector<int>::iterator>, numbers.begin(), numbers.end(), output, false);
-		TestTime("Heap sort", my_sort::HeapSort<std::vector<int>::iterator>, numbers.begin(), numbers.end(), output, false);
-		TestTime("Shell sort", my_sort::ShellSort<std::vector<int>::iterator>, numbers.begin(), numbers.end(), output, false);
-		TestTime("Merge sort", my_sort::MergeSort<std::vector<int>::iterator>, numbers.begin(), numbers.end(), output, false);
-		TestTime("Quick sort", my_sort::QuickSort<std::vector<int>::iterator>, numbers.begin(), numbers.end(), output, false);
-		TestTime("Original sort", std::sort<std::vector<int>::iterator>, numbers.begin(), numbers.end(), output, false);
-	}
-	catch (std::exception exp)
+	std::vector<std::pair<std::string, std::function<void(std::vector<int>::iterator, std::vector<int>::iterator)>>>	functions_sort
 	{
-		std::cerr << "Exception: " << exp.what() << std::endl;
-	}
+		{"Bubble sort", my_sort::BubbleSort<vector_iter>},
+		{"Comb sort", my_sort::CombSort<vector_iter>},
+		{"Odd-Even sort", my_sort::OddEvenSort<vector_iter>},
+		{"Shaker sort", my_sort::ShakerSort<vector_iter>},
+		{"Shell sort", my_sort::ShellSort<vector_iter>},
+		{"Selection sort", my_sort::SelectionSort<vector_iter>},
+		{"Insertion sort", my_sort::InsertionSort<vector_iter>},
+		{"Merge sort", my_sort::MergeSort<vector_iter>},
+		{"Heap sort", my_sort::HeapSort<vector_iter>},
+		{"Quick sort", my_sort::QuickSort<vector_iter>},
+		{"Intro sort", my_sort::IntroSort<vector_iter>},
+		{"Origin sort", std::sort<vector_iter>},
+		{"Stable origin sort", std::stable_sort<vector_iter>}
+	};
+
+	Report report{ functions_sort, "result", "win11", "test1", "C:/Users/pro10/forProject/tests", "../../../result" };
+
+	report.CreateReport<int>(10, 10000, true);
+
 	return 0;
 }
