@@ -7,12 +7,17 @@ static std::string	OutputColor(const std::string&	color, bool is_enable)
 	return std::string("");
 }
 
-static std::string	ResultIsSortedToString(bool is_success, bool is_enabled_color = true)
+static std::string	ResultIsSortedToString(bool is_success, bool is_enabled_color = true, bool is_reset = false)
 {
 	static size_t i = 1;
 	std::string result;
 	std::string	color;
 
+	if (is_reset)
+	{
+		i = 1;
+		return ("");
+	}
 	color = (is_success ? LIGHT_GREEN : LIGHT_RED);
 
 	return (
@@ -20,7 +25,7 @@ static std::string	ResultIsSortedToString(bool is_success, bool is_enabled_color
 		(is_enabled_color ? color : "") +
 		(is_success ? "OK" : "KO") +
 		(is_enabled_color ? NOCOLOR : "") + "\n"
-		);
+	);
 }
 
 template <typename Type>
@@ -40,16 +45,25 @@ static std::string SetToString(const std::set<Type>& src)
 	return (result);
 }
 
+template <typename Type>
+std::string	to_string(Type value)
+{
+	std::stringstream	buff;
+	buff << value;
+	return (buff.str());
+}
+
 template<typename ForwardIterator, typename FunctionSort, typename Type>
 void	TestTime(std::string name_sort, FunctionSort function_sort,
 						ForwardIterator begin, ForwardIterator end,
 						std::ostream_iterator<Type> output, bool is_enabled_color)
 {
 	using value_type = std::iterator_traits<ForwardIterator>::value_type;
-	long double times = 0.0;
+	unsigned long times = 0.0;
 	std::vector<value_type>	buffer;
 	std::set<unsigned int>	sizes;
 	std::string				result;
+	bool					is_true;
 
 	if (begin >= end)
 	{
@@ -64,51 +78,62 @@ void	TestTime(std::string name_sort, FunctionSort function_sort,
 		function_sort(elems.begin(), elems.end());
 	Timer::Stop();
 
-	times = static_cast<long double>(Timer::GetTime());
+	times = Timer::GetTime();
 
 	bool is_sorted = true;
 	for (auto& elems : buffer)
 	{
 		sizes.insert(elems.size());
 		if (!std::is_sorted(elems.begin(), elems.end()))
+		{
 			is_sorted = false;
+			break;
+		}
 	}
+	
+	is_true = false;
+	if ((double)times / buffer.size() <= 0)
+		is_true = true;
 
 	result =	"Testing sort <" +
 				OutputColor(LIGHT_YELLOW, is_enabled_color) +
 				name_sort +
 				OutputColor(LIGHT_YELLOW, is_enabled_color) + ">" + '\n' +
 				ResultIsSortedToString(is_sorted, is_enabled_color) +
-				"Count arrays: " + std::to_string(buffer.size()) + '\n' +
-				"Count elems:  " + SetToString(sizes) + '\n' +
-				"Times:	" + std::to_string(static_cast<long double> ((times / buffer.size()) / 1000)) + " seconds" + '\n' + '\n';
+				std::format("Count arrays: {}\nCount elems: {}\n", buffer.size(), SetToString(sizes)) +
+				std::format("Times: {} milliseconds\n", times / buffer.size()) +
+				std::format("       {} milliseconds\n", static_cast<double>((double)times / buffer.size())) +
+				std::format("       {} seconds\n", std::to_string(static_cast<long double>(((long double)times / buffer.size()) / 1000))) +
+				std::format("       {} exponential notation\n\n", static_cast<long double>(((long double)times / buffer.size()) / 1000));
 
 	std::copy(result.begin(), result.end(), output);
 }
 
-template<typename FunctionSort>
-void	TestIsSorted(std::string name_sort, FunctionSort function_sort, size_t size, size_t count)
+template<typename FunctionSort, typename Type>
+void	TestIsSorted(std::string name_sort, FunctionSort function_sort,
+			std::ostream_iterator<Type>	out, size_t size, size_t count,
+			bool is_enabled_color = false)
 {
 	std::vector<int>	vec;
-	bool				_result;
+	std::string			buffer;
+	bool				is_sorted;
 
 	for (auto i = 0; i < count; ++i)
 	{
 		vec = GenerateRandomVector(INT32_MIN, INT32_MAX, size);
 		function_sort(vec.begin(), vec.end());
-		_result = std::is_sorted(vec.begin(), vec.end());
-		if (!_result)
-		{
-			std::cout << LIGHT_RED << "ERROR!" << NOCOLOR << std::endl;
+		is_sorted = std::is_sorted(vec.begin(), vec.end());
+		buffer += ResultIsSortedToString(is_sorted, is_enabled_color);
+		std::copy(buffer.begin(), buffer.end(), out);
+		if (!is_sorted)
 			break;
-		}
-		ResultIsSortedToString(_result);
+		buffer.clear();
 		vec.clear();
 	}
 }
 
 template<typename FunctionSort>
-inline void TestIsSorted(std::string name_sort, FunctionSort function_sort)
+void TestIsSorted(std::string name_sort, FunctionSort function_sort)
 {
 	std::vector<int>	vec;
 
@@ -116,70 +141,70 @@ inline void TestIsSorted(std::string name_sort, FunctionSort function_sort)
 
 	//	TEST 1
 	function_sort(vec.begin(), vec.end());
-	ResultIsSortedToString(vec.empty());
+	std::cout << ResultIsSortedToString(vec.empty());
 
 	vec.clear();
 
 	//	TEST 2
 	vec = { 1 };
 	function_sort(vec.begin(), vec.end());
-	ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
+	std::cout << ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
 
 	vec.clear();
 
 	//	TEST 3
 	vec = { 1, 2, 3 };
 	function_sort(vec.begin(), vec.end());
-	ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
+	std::cout << ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
 
 	vec.clear();
 
 	//	TEST 4
 	vec = { 3, 2, 1, 4 };
 	function_sort(vec.begin(), vec.end());
-	ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
+	std::cout << ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
 
 	vec.clear();
 
 	//	TEST 5
 	vec = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 	function_sort(vec.begin(), vec.end());
-	ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
+	std::cout << ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
 
 	vec.clear();
 
 	//	TEST 6
 	vec = { 1, 2, 3, 4, 5, 6, 7, 8, 9, -10 };
 	function_sort(vec.begin(), vec.end());
-	ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
+	std::cout << ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
 
 	vec.clear();
 
 	//	TEST 7
 	vec = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
 	function_sort(vec.begin(), vec.end());
-	ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
+	std::cout << ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
 
 	vec.clear();
 
 	//	TEST 8
 	vec = { 10, -2, -3, 4, -5, 6, -7, 8, -9, -10 };
 	function_sort(vec.begin(), vec.end());
-	ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
+	std::cout << ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
 
 	vec.clear();
 
 	//	TEST 9
 	vec = { 1, 5, 3, 10, 5, -100, 7, 6, 1, 10 };
 	function_sort(vec.begin(), vec.end());
-	ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
+	std::cout << ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
 
 	vec.clear();
 
 	//	TEST 10
 	vec = { 1, 1, 1, -1, -1, -1, 1, 1, -1, -1, 1, 1 };
 	function_sort(vec.begin(), vec.end());
-	ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
+	std::cout << ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
 
 	vec.clear();
 
@@ -192,6 +217,6 @@ inline void TestIsSorted(std::string name_sort, FunctionSort function_sort)
 		size_t	size = (size_t)GenerateRandomInt32(0, 100);
 		vec = GenerateRandomVector(INT32_MIN, INT32_MAX, 100);
 		function_sort(vec.begin(), vec.end());
-		ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
+		std::cout << ResultIsSortedToString(std::is_sorted(vec.begin(), vec.end()));
 	}
 }
