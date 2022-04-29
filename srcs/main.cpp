@@ -48,28 +48,29 @@ int main()
 		{"Stable origin sort", std::stable_sort<vector_iter>}
 	};
 
-	Report{ functions_sort_group_1, "result", "win11", "test1", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10, 100000, false);
+	Report{ functions_sort_all, "result", "win11", "test1", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10, 100000, false);
 	Report{ functions_sort_group_2, "result", "win11", "test1", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(1000000, 100000000, false);
 
-	Report{ functions_sort_group_1, "result", "win11", "test2", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10, 100000, false);
+	Report{ functions_sort_all, "result", "win11", "test2", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10, 100000, false);
 	Report{ functions_sort_group_2, "result", "win11", "test2", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(1000000, 100000000, false);
 
-	Report{ functions_sort_group_1, "result", "win11", "test6", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10, 100000, false);
+	Report{ functions_sort_all, "result", "win11", "test6", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10, 100000, false);
 	Report{ functions_sort_group_2, "result", "win11", "test6", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(1000000, 100000000, false);
 
-	Report{ functions_sort_group_1, "result", "win11", "test7", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10, 100000, false);
+	Report{ functions_sort_all, "result", "win11", "test7", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10, 100000, false);
 	Report{ functions_sort_group_2, "result", "win11", "test7", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(1000000, 100000000, false);
 
-	Report{ functions_sort_group_1, "result", "win11", "test8", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10, 100000, false);
+	Report{ functions_sort_all, "result", "win11", "test8", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10, 100000, false);
 	Report{ functions_sort_group_2, "result", "win11", "test8", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(1000000, 100000000, false);
 
-	Report{ functions_sort_group_1, "result", "win11", "test9", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10, 100000, false);
+	Report{ functions_sort_all, "result", "win11", "test9", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10, 100000, false);
 	Report{ functions_sort_group_2, "result", "win11", "test9", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(1000000, 100000000, false);
 
-	Report{ functions_sort_group_1, "result", "win11", "test10", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10, 100000, false);
+	Report{ functions_sort_all, "result", "win11", "test10", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10, 100000, false);
 	Report{ functions_sort_group_2, "result", "win11", "test10", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(1000000, 100000000, false);
 	
-	Report{ functions_sort_group_1, "result", "win11", "test5", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10, 1000000, false);
+	Report{ functions_sort_all, "result", "win11", "test5", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10, 1000000, false);
 	Report{ functions_sort_group_2, "result", "win11", "test5", "C:/Users/pro10/forProject/tests", "../../../result" }.CreateReport<int>(10000000, 100000000, false);
+	
 	return 0;
 }
