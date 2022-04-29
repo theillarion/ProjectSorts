@@ -54,7 +54,7 @@ void	Report::CreateReport(unsigned int count_min, unsigned int count_max, bool i
 			bool		is_exist = false;
 
 			path_to_file_input = std::format("{}/{}/{}", path_to_dir_src, dst, name_test);
-			path_to_file_output = std::format("{}/{}/result__{}__{}", path_to_dir_dst, dst, name_os, name_test);
+			path_to_file_output = std::format("{}/{}/{}__{}__{}", path_to_dir_dst, dst, name, name_os, name_test);
 
 			numbers = ReaderNumbersFromFile<Type>(path_to_file_input);
 
