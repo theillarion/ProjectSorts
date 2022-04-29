@@ -1,0 +1,93 @@
+Report created on: Fri Apr 29 16:08:41 2022
+
+Testing sort <Bubble sort>
+Test #1: OK
+Count arrays: 10
+Count elems: 10
+Times: 0.000000 seconds
+       0.000320 milliseconds
+       0.320000 microseconds
+Testing sort <Comb sort>
+Test #2: OK
+Count arrays: 10
+Count elems: 10
+Times: 0.000001 seconds
+       0.000630 milliseconds
+       0.630000 microseconds
+Testing sort <Odd-Even sort>
+Test #3: OK
+Count arrays: 10
+Count elems: 10
+Times: 0.000001 seconds
+       0.000560 milliseconds
+       0.560000 microseconds
+Testing sort <Shaker sort>
+Test #4: OK
+Count arrays: 10
+Count elems: 10
+Times: 0.000000 seconds
+       0.000500 milliseconds
+       0.500000 microseconds
+Testing sort <Shell sort>
+Test #5: OK
+Count arrays: 10
+Count elems: 10
+Times: 0.000001 seconds
+       0.000520 milliseconds
+       0.520000 microseconds
+Testing sort <Selection sort>
+Test #6: OK
+Count arrays: 10
+Count elems: 10
+Times: 0.000000 seconds
+       0.000300 milliseconds
+       0.300000 microseconds
+Testing sort <Insertion sort>
+Test #7: OK
+Count arrays: 10
+Count elems: 10
+Times: 0.000000 seconds
+       0.000300 milliseconds
+       0.300000 microseconds
+Testing sort <Merge sort>
+Test #8: OK
+Count arrays: 10
+Count elems: 10
+Times: 0.000002 seconds
+       0.001620 milliseconds
+       1.620000 microseconds
+Testing sort <Heap sort>
+Test #9: OK
+Count arrays: 10
+Count elems: 10
+Times: 0.000000 seconds
+       0.000360 milliseconds
+       0.360000 microseconds
+Testing sort <Quick sort>
+Test #10: OK
+Count arrays: 10
+Count elems: 10
+Times: 0.000001 seconds
+       0.000610 milliseconds
+       0.610000 microseconds
+Testing sort <Intro sort>
+Test #11: OK
+Count arrays: 10
+Count elems: 10
+Times: 0.000000 seconds
+       0.000350 milliseconds
+       0.350000 microseconds
+Testing sort <Origin sort>
+Test #12: OK
+Count arrays: 10
+Count elems: 10
+Times: 0.000000 seconds
+       0.000240 milliseconds
+       0.240000 microseconds
+Testing sort <Stable origin sort>
+Test #13: OK
+Count arrays: 10
+Count elems: 10
+Times: 0.000000 seconds
+       0.000230 milliseconds
+       0.230000 microseconds

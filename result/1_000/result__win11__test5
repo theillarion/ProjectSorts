@@ -1,0 +1,93 @@
+Report created on: Fri Apr 29 16:43:08 2022
+
+Testing sort <Bubble sort>
+Test #1: OK
+Count arrays: 1
+Count elems: 1000
+Times: 0.000001 seconds
+       0.000900 milliseconds
+       0.900000 microseconds
+Testing sort <Comb sort>
+Test #2: OK
+Count arrays: 1
+Count elems: 1000
+Times: 0.000003 seconds
+       0.002500 milliseconds
+       2.500000 microseconds
+Testing sort <Odd-Even sort>
+Test #3: OK
+Count arrays: 1
+Count elems: 1000
+Times: 0.000001 seconds
+       0.000900 milliseconds
+       0.900000 microseconds
+Testing sort <Shaker sort>
+Test #4: OK
+Count arrays: 1
+Count elems: 1000
+Times: 0.000001 seconds
+       0.001200 milliseconds
+       1.200000 microseconds
+Testing sort <Shell sort>
+Test #5: OK
+Count arrays: 1
+Count elems: 1000
+Times: 0.000582 seconds
+       0.582400 milliseconds
+       582.400000 microseconds
+Testing sort <Selection sort>
+Test #6: OK
+Count arrays: 1
+Count elems: 1000
+Times: 0.000932 seconds
+       0.932400 milliseconds
+       932.400000 microseconds
+Testing sort <Insertion sort>
+Test #7: OK
+Count arrays: 1
+Count elems: 1000
+Times: 0.000001 seconds
+       0.001200 milliseconds
+       1.200000 microseconds
+Testing sort <Merge sort>
+Test #8: OK
+Count arrays: 1
+Count elems: 1000
+Times: 0.000134 seconds
+       0.134100 milliseconds
+       134.100000 microseconds
+Testing sort <Heap sort>
+Test #9: OK
+Count arrays: 1
+Count elems: 1000
+Times: 0.000032 seconds
+       0.031800 milliseconds
+       31.800000 microseconds
+Testing sort <Quick sort>
+Test #10: OK
+Count arrays: 1
+Count elems: 1000
+Times: 0.000017 seconds
+       0.017100 milliseconds
+       17.100000 microseconds
+Testing sort <Intro sort>
+Test #11: OK
+Count arrays: 1
+Count elems: 1000
+Times: 0.000007 seconds
+       0.006600 milliseconds
+       6.600000 microseconds
+Testing sort <Origin sort>
+Test #12: OK
+Count arrays: 1
+Count elems: 1000
+Times: 0.000007 seconds
+       0.007300 milliseconds
+       7.300000 microseconds
+Testing sort <Stable origin sort>
+Test #13: OK
+Count arrays: 1
+Count elems: 1000
+Times: 0.000005 seconds
+       0.005000 milliseconds
+       5.000000 microseconds

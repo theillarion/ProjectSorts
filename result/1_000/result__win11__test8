@@ -1,0 +1,93 @@
+Report created on: Fri Apr 29 16:08:41 2022
+
+Testing sort <Bubble sort>
+Test #1: OK
+Count arrays: 10
+Count elems: 1000
+Times: 0.000784 seconds
+       0.784080 milliseconds
+       784.080000 microseconds
+Testing sort <Comb sort>
+Test #2: OK
+Count arrays: 10
+Count elems: 1000
+Times: 0.000799 seconds
+       0.798660 milliseconds
+       798.660000 microseconds
+Testing sort <Odd-Even sort>
+Test #3: OK
+Count arrays: 10
+Count elems: 1000
+Times: 0.000581 seconds
+       0.581330 milliseconds
+       581.330000 microseconds
+Testing sort <Shaker sort>
+Test #4: OK
+Count arrays: 10
+Count elems: 1000
+Times: 0.000804 seconds
+       0.803910 milliseconds
+       803.910000 microseconds
+Testing sort <Shell sort>
+Test #5: OK
+Count arrays: 10
+Count elems: 1000
+Times: 0.000546 seconds
+       0.545900 milliseconds
+       545.900000 microseconds
+Testing sort <Selection sort>
+Test #6: OK
+Count arrays: 10
+Count elems: 1000
+Times: 0.000951 seconds
+       0.951420 milliseconds
+       951.420000 microseconds
+Testing sort <Insertion sort>
+Test #7: OK
+Count arrays: 10
+Count elems: 1000
+Times: 0.000245 seconds
+       0.244860 milliseconds
+       244.860000 microseconds
+Testing sort <Merge sort>
+Test #8: OK
+Count arrays: 10
+Count elems: 1000
+Times: 0.000123 seconds
+       0.123210 milliseconds
+       123.210000 microseconds
+Testing sort <Heap sort>
+Test #9: OK
+Count arrays: 10
+Count elems: 1000
+Times: 0.000033 seconds
+       0.032770 milliseconds
+       32.770000 microseconds
+Testing sort <Quick sort>
+Test #10: OK
+Count arrays: 10
+Count elems: 1000
+Times: 0.000054 seconds
+       0.053840 milliseconds
+       53.840000 microseconds
+Testing sort <Intro sort>
+Test #11: OK
+Count arrays: 10
+Count elems: 1000
+Times: 0.000040 seconds
+       0.040400 milliseconds
+       40.400000 microseconds
+Testing sort <Origin sort>
+Test #12: OK
+Count arrays: 10
+Count elems: 1000
+Times: 0.000036 seconds
+       0.035630 milliseconds
+       35.630000 microseconds
+Testing sort <Stable origin sort>
+Test #13: OK
+Count arrays: 10
+Count elems: 1000
+Times: 0.000028 seconds
+       0.027590 milliseconds
+       27.590000 microseconds
