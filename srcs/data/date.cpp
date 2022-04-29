@@ -15,8 +15,8 @@ Date::Date(unsigned short day, unsigned short month, unsigned short year) :
 
 }
 
-Date::Date(const Date&	date_time) :
-	day(date_time.day), month(date_time.month), year(date_time.year)
+Date::Date(const Date&	date) :
+	day(date.day), month(date.month), year(date.year)
 {
 
 }
@@ -40,4 +40,3 @@ std::istream& operator>>(std::istream& in, Date& date)
 	in >> date.day >> date.month >> date.year;
 	return (in);
 }
-

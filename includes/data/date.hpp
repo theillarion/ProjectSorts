@@ -7,6 +7,7 @@
 
 # include <compare>
 # include <ostream>
+# include <istream>
 
 struct Date
 {
@@ -16,13 +17,13 @@ struct Date
 
 	Date();
 	Date(unsigned short day, unsigned short month, unsigned short year);
-	Date(const Date&	date_time);
+	Date(const Date&	date);
 
 	auto operator<=>(const Date&	date_time) const = default;
 	Date& operator=(const Date& date);
 	
-	friend std::ostream& operator<<(std::ostream&	out, const Date&	date_time);
-	friend std::istream& operator>>(std::istream&	in, Date& date_time);
+	friend std::ostream& operator<<(std::ostream&	out, const Date&	date);
+	friend std::istream& operator>>(std::istream&	in, Date& date);
 };
 
 #endif //PROJECTSORTS_DATE_HPP
