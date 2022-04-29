@@ -1,7 +1,7 @@
 #include "heap_sort.hpp"
 
 template <typename ForwardIterator>
-static void	Push(ForwardIterator begin, ForwardIterator end, int root_value, unsigned int root_index)
+static void	Push(ForwardIterator begin, ForwardIterator end, auto root_value, unsigned int root_index)
 {
 	if (root_index * 2 + 1 < end - begin)
 	{
