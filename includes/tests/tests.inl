@@ -53,13 +53,18 @@ std::string	to_string(Type value)
 	return (buff.str());
 }
 
+std::string	TimesToString()
+{
+	std::string result;
+}
+
 template<typename ForwardIterator, typename FunctionSort, typename Type>
 void	TestTime(std::string name_sort, FunctionSort function_sort,
 						ForwardIterator begin, ForwardIterator end,
 						std::ostream_iterator<Type> output, bool is_enabled_color)
 {
 	using value_type = std::iterator_traits<ForwardIterator>::value_type;
-	unsigned long times = 0.0;
+	double	times;
 	std::vector<value_type>	buffer;
 	std::set<unsigned int>	sizes;
 	std::string				result;
@@ -73,12 +78,16 @@ void	TestTime(std::string name_sort, FunctionSort function_sort,
 
 	std::copy(begin, end, std::back_inserter(buffer));
 
-	Timer::Start();
-	for (auto&	elems: buffer)
+	
+	for (auto& elems : buffer)
+	{
+		Timer::Start();
 		function_sort(elems.begin(), elems.end());
-	Timer::Stop();
-
-	times = Timer::GetTime();
+		Timer::Stop();
+		times += Timer::GetTimeSec();
+	}
+	
+	times /= buffer.size();
 
 	bool is_sorted = true;
 	for (auto& elems : buffer)
@@ -90,21 +99,17 @@ void	TestTime(std::string name_sort, FunctionSort function_sort,
 			break;
 		}
 	}
-	
-	is_true = false;
-	if ((double)times / buffer.size() <= 0)
-		is_true = true;
 
 	result =	"Testing sort <" +
 				OutputColor(LIGHT_YELLOW, is_enabled_color) +
 				name_sort +
 				OutputColor(LIGHT_YELLOW, is_enabled_color) + ">" + '\n' +
 				ResultIsSortedToString(is_sorted, is_enabled_color) +
-				std::format("Count arrays: {}\nCount elems: {}\n", buffer.size(), SetToString(sizes)) +
-				std::format("Times: {} milliseconds\n", times / buffer.size()) +
-				std::format("       {} milliseconds\n", static_cast<double>((double)times / buffer.size())) +
-				std::format("       {} seconds\n", std::to_string(static_cast<long double>(((long double)times / buffer.size()) / 1000))) +
-				std::format("       {} exponential notation\n\n", static_cast<long double>(((long double)times / buffer.size()) / 1000));
+				"Count arrays: " + std::to_string(buffer.size()) + "\n" + 
+				"Count elems: " + SetToString(sizes) + "\n" +
+				"Times: " + std::to_string(times) + " seconds\n" +
+				"       " + std::to_string(times * 1000) + " milliseconds\n"
+				"       " + std::to_string(times * 1000000) + " microseconds\n";
 
 	std::copy(result.begin(), result.end(), output);
 }
