@@ -1,30 +1,33 @@
 //
 // Created by pro10 on 19.04.2022.
 //
-
-#include <ctime>
-
 #include "timer/timer.hpp"
 
-unsigned long long Timer::start_milliseconds = 0;
-unsigned long long Timer::end_milliseconds = 0;
+std::chrono::steady_clock::time_point	Timer::start;
+std::chrono::steady_clock::time_point	Timer::end;
 
 void Timer::Start()
 {
-	Timer::start_milliseconds = clock();
+	Timer::start = std::chrono::steady_clock::now();
 }
 
 void Timer::Stop()
 {
-	Timer::end_milliseconds = clock();
+	Timer::end = std::chrono::steady_clock::now();
 }
 
-unsigned long long Timer::GetTime()
+uint64_t Timer::GetTimeUs()
 {
-	return (Timer::end_milliseconds - Timer::start_milliseconds);
+
+	return (static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::microseconds>(Timer::end - Timer::start).count()));
 }
 
-long double Timer::GetTimeSeconds()
+uint64_t Timer::GetTimeMs()
 {
-	return (static_cast<long double>(Timer::end_milliseconds - Timer::start_milliseconds) / 1000);
+	return (static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::milliseconds>(Timer::end - Timer::start).count()));
+}
+
+double Timer::GetTimeSec()
+{
+	return (std::chrono::duration<double>(Timer::end - Timer::start).count());
 }

@@ -5,19 +5,23 @@
 #ifndef PROJECTSORTS_TIMER_HPP
 #define PROJECTSORTS_TIMER_HPP
 
+#include <chrono>
+
 class Timer
 {
 private:
-	static unsigned long long	start_milliseconds;
-	static unsigned long long	end_milliseconds;
 
+	static std::chrono::steady_clock::time_point	start;
+	static std::chrono::steady_clock::time_point	end;
 public:
 	Timer() = delete;
 
 	static void	Start();
 	static void	Stop();
-	static unsigned long long GetTime();
-	static long double GetTimeSeconds();
+	static void Reset();
+	static uint64_t GetTimeUs();
+	static uint64_t GetTimeMs();
+	static double GetTimeSec();
 };
 
 #endif //PROJECTSORTS_TIMER_HPP
