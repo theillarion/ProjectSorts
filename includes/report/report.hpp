@@ -12,6 +12,7 @@
 # include <iterator>
 # include <format>
 
+template <typename Type>
 class Report
 {
 private:
@@ -21,7 +22,8 @@ private:
 	std::string						path_to_dir_src;
 	std::string						path_to_dir_dst;
 
-	using vector_pair_functions = std::vector<std::pair<std::string, std::function<void(std::vector<int>::iterator, std::vector<int>::iterator)>>>;
+	using vector_iter = std::vector<Type>::iterator;
+	using vector_pair_functions = std::vector<std::pair<std::string, std::function<void(vector_iter, vector_iter)>>>;
 	vector_pair_functions	functions_sort;
 
 	std::string	NowTimeToString();
@@ -33,7 +35,6 @@ public:
 		std::string path_to_dir_src,
 		std::string path_to_dir_dst);
 
-	template <typename Type>
 	void	CreateReport(unsigned int count_min, unsigned int count_max, bool is_rewrite_files);
 };
 

@@ -34,7 +34,7 @@ void	TestTime(std::string name_sort, FunctionSort function_sort,
 						std::ostream_iterator<Type> output, bool is_enabled_color)
 {
 	using value_type = std::iterator_traits<ForwardIterator>::value_type;
-	double	times;
+	double	times = 0;
 	std::vector<value_type>	buffer;
 	std::set<unsigned int>	sizes;
 	std::string				result;

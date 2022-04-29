@@ -1,13 +1,15 @@
 #include "report.hpp"
 
-std::string	Report::NowTimeToString()
+template <typename Type>
+std::string	Report<Type>::NowTimeToString()
 {
 	time_t seconds = time(NULL);
 
 	return (asctime(localtime(&seconds)));
 }
 
-Report::Report(vector_pair_functions functions_sort,
+template <typename Type>
+Report<Type>::Report(vector_pair_functions functions_sort,
 	std::string name, std::string name_os,
 	std::string name_test,
 	std::string path_to_dir_src,
@@ -19,10 +21,10 @@ Report::Report(vector_pair_functions functions_sort,
 }
 
 template <typename Type>
-void	Report::CreateReport(unsigned int count_min, unsigned int count_max, bool is_rewrite_files)
+void	Report<Type>::CreateReport(unsigned int count_min, unsigned int count_max, bool is_rewrite_files)
 {
 	bool							is_enable_color = false;
-	std::vector<std::vector<int>>	numbers;
+	std::vector<std::vector<Type>>	numbers;
 	std::string						path_to_file_input;
 	std::string						path_to_file_output;
 	std::ofstream					file;
@@ -56,7 +58,7 @@ void	Report::CreateReport(unsigned int count_min, unsigned int count_max, bool i
 			path_to_file_input = std::format("{}/{}/{}", path_to_dir_src, dst, name_test);
 			path_to_file_output = std::format("{}/{}/{}__{}__{}", path_to_dir_dst, dst, name, name_os, name_test);
 
-			numbers = ReaderNumbersFromFile<Type>(path_to_file_input);
+			numbers = ReadAllLineFromFile<Type>(path_to_file_input);
 
 			if (!is_rewrite_files && std::filesystem::is_regular_file(path_to_file_output))
 			{
@@ -78,6 +80,7 @@ void	Report::CreateReport(unsigned int count_min, unsigned int count_max, bool i
 			ResultIsSortedToString(true, true, true);	// reset static variable
 
 			file.close();
+			numbers.clear();
 
 			if (is_exist)
 				std::clog << "File <" << path_to_file_output << ">: " << LIGHT_GREEN << "REWRITE" << NOCOLOR << std::endl;

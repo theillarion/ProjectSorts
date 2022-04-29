@@ -20,10 +20,10 @@
 # define LIGHT_RED		"\033[91m"
 # define NOCOLOR		"\033[0m"
 
-template<typename ForwardIterator, typename FunctionSort, typename Type>
+template<typename TypeData, typename FunctionSort, typename TypeOutput>
 void	TestTime(std::string name_sort, FunctionSort function_sort,
-					ForwardIterator begin, ForwardIterator end,
-					std::ostream_iterator<Type>	output, bool is_enabled_color);
+	std::vector<std::vector<TypeData>>& src,
+	std::ostream_iterator<TypeOutput> output, bool is_enabled_color);
 
 template<typename FunctionSort, typename Type>
 void	TestIsSorted(std::string name_sort, FunctionSort function_sort,
