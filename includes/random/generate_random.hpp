@@ -7,27 +7,14 @@
 
 # include <vector>
 # include <random>
+# include <data/date.hpp>
 
-inline int	GenerateRandomInt32(int min, int max)
-{
-	std::random_device				rnd;
-	std::mt19937					gen(rnd());
-	std::uniform_int_distribution<int>	uniform(min, max);
-	return (uniform(gen));
-}
+int	GenerateRandomInt32(int min, int max);
 
-inline std::vector<int>	GenerateRandomVector(int min, int max, size_t	size)
-{
-	std::vector<int>				result;
-	std::random_device				rnd;
-	std::mt19937					gen(rnd());
-	std::uniform_int_distribution<>	uniform(min, max);
+std::vector<int>	GenerateRandomVector(int min, int max, size_t	size);
 
-	result.reserve(size);
-	for (auto i = 0; i < size; ++i)
-		result.push_back(uniform(gen));
+std::string	GenerateRandomString(size_t	min_len_word, size_t	max_len_word);
 
-	return (result);
-}
+Date	GenerateRandomDate(size_t min_year, size_t max_year);
 
 #endif //PROJECTSORTS_GENERATE_RANDOM_HPP

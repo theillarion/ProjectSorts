@@ -28,36 +28,6 @@ static std::string	ResultIsSortedToString(bool is_success, bool is_enabled_color
 	);
 }
 
-template <typename Type>
-static std::string SetToString(const std::set<Type>& src)
-{
-	std::string result;
-
-	if (src.size() == 1)
-		result = std::to_string(*src.begin());
-	else if (src.size() > 1)
-	{
-		result += "{ ";
-		for (const auto& elem : src)
-			result += elem + " ";
-		result += "}";
-	}
-	return (result);
-}
-
-template <typename Type>
-std::string	to_string(Type value)
-{
-	std::stringstream	buff;
-	buff << value;
-	return (buff.str());
-}
-
-std::string	TimesToString()
-{
-	std::string result;
-}
-
 template<typename ForwardIterator, typename FunctionSort, typename Type>
 void	TestTime(std::string name_sort, FunctionSort function_sort,
 						ForwardIterator begin, ForwardIterator end,

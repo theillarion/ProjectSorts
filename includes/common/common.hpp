@@ -28,7 +28,13 @@ void	PrintRange(ForwardIterator begin, ForwardIterator end);
 void PrintSimpleArray(int* ptr, unsigned int size);
 
 template <typename Type>
-std::vector<std::vector<Type>>	ReaderNumbersFromFile(const std::string& path);
+std::string SetToString(const std::set<Type>& src);
+
+template <typename Type>
+std::string	to_string(Type value);
+
+template <typename Type>
+std::vector<std::vector<Type>>	ReadAllLineFromFile(const std::string& path);
 
 # include "common.inl"
 

@@ -46,7 +46,32 @@ inline void	PrintRange(ForwardIterator begin, ForwardIterator end)
 }
 
 template <typename Type>
-inline std::vector<std::vector<Type>>	ReaderNumbersFromFile(const std::string& path)
+std::string	to_string(Type value)
+{
+	std::stringstream	buff;
+	buff << value;
+	return (buff.str());
+}
+
+template <typename Type>
+std::string SetToString(const std::set<Type>& src)
+{
+	std::string result;
+
+	if (src.size() == 1)
+		result = std::to_string(*src.begin());
+	else if (src.size() > 1)
+	{
+		result += "{ ";
+		for (const auto& elem : src)
+			result += elem + " ";
+		result += "}";
+	}
+	return (result);
+}
+
+template <typename Type>
+inline std::vector<std::vector<Type>>	ReadAllLineFromFile(const std::string& path)
 {
 	std::ifstream					file;
 	std::vector<std::vector<Type>>	result;
