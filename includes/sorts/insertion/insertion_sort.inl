@@ -1,4 +1,5 @@
 #include "insertion_sort.hpp"
+#include "common/common.hpp"
 
 template<typename ForwardIterator>
 void	my_sort::InsertionSort(ForwardIterator begin, ForwardIterator end)
@@ -13,8 +14,8 @@ void	my_sort::InsertionSort(ForwardIterator begin, ForwardIterator end)
 		{
 			if (*it_i < *it_j)
 			{
-				auto backup = *it_i;
-				std::move(it_j, it_i, it_j + 1);
+				auto backup(*it_i);
+				std::move_backward(it_j, it_i, it_i + 1);
 				*it_j = backup;
 				break;
 			}
