@@ -10,10 +10,6 @@ static void	SortTwo(ForwardIterator begin, ForwardIterator middle, ForwardIterat
 
 	if (end - begin == 1)
 		return;
-	if (begin == middle)
-		move(middle, end, begin);
-	else if (middle == end)
-		return;
 	buffer.reserve(end - begin);
 	beginFirst = begin;
 	beginSecond = middle;
