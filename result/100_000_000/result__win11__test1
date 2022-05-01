@@ -1,0 +1,44 @@
+Report created on: Sat Apr 30 04:28:27 2022
+
+Testing sort <Merge sort>
+Test #1: OK
+Count arrays: 1
+Count elems: 100000000
+Times: 21.233457 seconds
+       21233.457000 milliseconds
+       21233457.000000 microseconds
+Testing sort <Heap sort>
+Test #2: OK
+Count arrays: 1
+Count elems: 100000000
+Times: 108.690081 seconds
+       108690.080700 milliseconds
+       108690080.700000 microseconds
+Testing sort <Quick sort>
+Test #3: OK
+Count arrays: 1
+Count elems: 100000000
+Times: 11.191909 seconds
+       11191.908600 milliseconds
+       11191908.600000 microseconds
+Testing sort <Intro sort>
+Test #4: OK
+Count arrays: 1
+Count elems: 100000000
+Times: 10.019493 seconds
+       10019.493500 milliseconds
+       10019493.500000 microseconds
+Testing sort <Origin sort>
+Test #5: OK
+Count arrays: 1
+Count elems: 100000000
+Times: 10.391374 seconds
+       10391.374400 milliseconds
+       10391374.400000 microseconds
+Testing sort <Stable origin sort>
+Test #6: OK
+Count arrays: 1
+Count elems: 100000000
+Times: 10.105027 seconds
+       10105.027000 milliseconds
+       10105027.000000 microseconds

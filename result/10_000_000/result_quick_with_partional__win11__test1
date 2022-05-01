@@ -1,0 +1,9 @@
+Report created on: Sat Apr 30 17:18:56 2022
+
+Testing sort <Quick sort>
+Test #1: OK
+Count arrays: 10
+Count elems: 10000000
+Times: 0.989923 seconds
+       989.922820 milliseconds
+       989922.820000 microseconds

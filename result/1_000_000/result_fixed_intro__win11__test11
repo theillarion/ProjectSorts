@@ -1,0 +1,9 @@
+Report created on: Sun May  1 12:58:00 2022
+
+Testing sort <Intro sort>
+Test #1: OK
+Count arrays: 10
+Count elems: 1000000
+Times: 0.497864 seconds
+       497.863860 milliseconds
+       497863.860000 microseconds
